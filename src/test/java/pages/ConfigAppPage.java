@@ -11,14 +11,31 @@ public class ConfigAppPage extends BasePage {
     public WebElement usernameField;
     @FindBy(name = "j_password")
     public WebElement passwordField;
+    @FindBy(name = "login")
+    public WebElement loginBtn;
 
     public ConfigAppPage(WebDriver driver) {
         super(driver);
     }
 
 
-    public static void main (String[] args){
-        System.out.println("testPN");
+    public ConfigAppPage open() {
+        getWebDriver().get(URL);
+        return new ConfigAppPage(getWebDriver());
     }
+
+    public ConfigAppPage setCredentials(String username, String password) {
+        usernameField.clear();
+        usernameField.sendKeys(username);
+        passwordField.clear();
+        passwordField.sendKeys(password);
+        return new ConfigAppPage(getWebDriver());
+    }
+
+    public ConfigAppPage iafLogin() {
+        loginBtn.click();
+        return new ConfigAppPage(getWebDriver());
+    }
+
 
 }
