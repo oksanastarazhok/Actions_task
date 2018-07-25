@@ -6,19 +6,22 @@ import org.openqa.selenium.support.PageFactory;
 
 
 public class BasePage {
-    public WebDriver driver;
+    protected WebDriver driver;
 
-    public BasePage(WebDriver driver) {
-        driver = driver;
-        PageFactory.initElements(driver, this);
+
+
+    public BasePage (WebDriver driver) {
+        this.driver = driver;
+        PageFactory.initElements(this.driver, this);
     }
 
-    public WebDriver getWebDriver() {
-        return driver;
+    public WebDriver getDriver() {
+        return this.driver;
     }
 
-    public boolean isElementPresent(By by) {
-        int i = driver.findElements(by).size();
-        return i != 0;
+    public boolean isElementPresent(By locator) {
+        return driver.findElements(locator).size() > 0;
     }
+
+
 }

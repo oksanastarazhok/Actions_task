@@ -11,7 +11,7 @@ public class ConfigAppPage extends BasePage {
     public WebElement usernameField;
     @FindBy(name = "j_password")
     public WebElement passwordField;
-    @FindBy(name = "login")
+    @FindBy(css = ".button")
     public WebElement loginBtn;
 
     public ConfigAppPage(WebDriver driver) {
@@ -20,21 +20,21 @@ public class ConfigAppPage extends BasePage {
 
 
     public ConfigAppPage open() {
-        getWebDriver().get(URL);
-        return new ConfigAppPage(getWebDriver());
+        driver.get(URL);
+        return new ConfigAppPage(driver);
     }
 
-    public ConfigAppPage setCredentials(String username, String password) {
+    public ConfigAppPage sendCredentials(String username, String password) {
         usernameField.clear();
         usernameField.sendKeys(username);
         passwordField.clear();
         passwordField.sendKeys(password);
-        return new ConfigAppPage(getWebDriver());
+        return new ConfigAppPage(driver);
     }
 
     public ConfigAppPage iafLogin() {
         loginBtn.click();
-        return new ConfigAppPage(getWebDriver());
+        return new ConfigAppPage(driver);
     }
 
 
