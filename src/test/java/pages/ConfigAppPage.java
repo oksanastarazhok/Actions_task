@@ -2,40 +2,49 @@ package pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
 public class ConfigAppPage extends BasePage {
 
-    private final String URL = "https://staging-sandbox0.corp.globoforce.com/iaf-config-app/manageAwardProgramsOpen?client=5021&menuid=6_1";
-    @FindBy(name = "j_username")
-    public WebElement usernameField;
-    @FindBy(name = "j_password")
-    public WebElement passwordField;
-    @FindBy(css = ".button")
-    public WebElement loginBtn;
+    @FindBy(linkText = "Test Client AT Nominator")
+    public WebElement testClient;
+
+    @FindBy(id = "ygtvlabelel39")
+    public WebElement awardSection;
+
+    @FindBy(id = "ygtvlabelel40")
+    public WebElement awardProggram;
+
+    @FindBy(linkText = "Service Anniversaries")
+    public WebElement serviceAwardProgram;
+
+    @FindBy(linkText ="testclient5021 program" )
+    public WebElement clientProgramm;
 
     public ConfigAppPage(WebDriver driver) {
         super(driver);
     }
 
-
-    public ConfigAppPage open() {
-        driver.get(URL);
+    public ConfigAppPage selectClient() {
+        testClient.click();
         return new ConfigAppPage(driver);
     }
 
-    public ConfigAppPage sendCredentials(String username, String password) {
-        usernameField.clear();
-        usernameField.sendKeys(username);
-        passwordField.clear();
-        passwordField.sendKeys(password);
-        return new ConfigAppPage(driver);
+    public ConfigAppPage openAwardProgram(){
+        awardSection.click();
+        awardProggram.click();
+        return  new ConfigAppPage(driver);
     }
 
-    public ConfigAppPage iafLogin() {
-        loginBtn.click();
+    public ConfigAppPage swapAwardProgram(){
+        Actions builder = new Actions(driver);
+        System.out.println("X coordinate: "+serviceAwardProgram.getLocation().getX()+"Y serviceAwardProgram: "+serviceAwardProgram.getLocation().getY());
+        builder.moveByOffset(serviceAwardProgram.getLocation().getX() + 1,1).dragAndDrop(serviceAwardProgram,clientProgramm).perform();
         return new ConfigAppPage(driver);
+
     }
+
 
 
 }
