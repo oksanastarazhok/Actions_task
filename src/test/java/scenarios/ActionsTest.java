@@ -6,6 +6,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.ConfigAppPage;
+import pages.IAFHomePage;
 
 import java.util.concurrent.TimeUnit;
 
@@ -22,9 +23,11 @@ public class ActionsTest {
     @Test
     public void test() {
         ConfigAppPage configAppPage = new ConfigAppPage(driver)
-        .open()
-        .sendCredentials("bhkb.jshcw@gqfozpkzgb.kbk", "password1")
-        .iafLogin();
+                .open()
+                .sendCredentials("bhkb.jshcw@gqfozpkzgb.kbk", "password1")
+                .iafLogin();
+        IAFHomePage iafHomePage = new IAFHomePage(driver)
+                .selectConfigApp();
 
 
     }
