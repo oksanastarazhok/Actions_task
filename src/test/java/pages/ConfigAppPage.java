@@ -25,7 +25,7 @@ public class ConfigAppPage extends BasePage {
     public WebElement serviceAwardProgram;
 
     @FindBy(linkText = "testclient5021 program")
-    public  WebElement clientProgram;
+    public WebElement clientProgram;
 
     public ConfigAppPage(WebDriver driver) {
         super(driver);
