@@ -1,6 +1,7 @@
 package pages;
 
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -31,28 +32,36 @@ public class ConfigAppPage extends BasePage {
         super(driver);
     }
 
+//Method selects a client from a client list
+
     public ConfigAppPage selectClient() {
         testClient.click();
         return new ConfigAppPage(driver);
     }
 
+    //Method openes Award/ Award Programs for a selected client
     public ConfigAppPage openAwardProgram() {
         awardSection.click();
         awardProggram.click();
         return new ConfigAppPage(driver);
     }
 
+    //Method swaps Service program and client program
     public ConfigAppPage swapAwardProgram() {
+        if (isElementPresent(By.id("ygtvlabelel39"))) {
 
 
-        new Actions(driver)
-                .moveToElement(serviceAwardProgram)
-                .pause(Duration.ofSeconds(1))
-                .clickAndHold(serviceAwardProgram)
-                .pause(Duration.ofSeconds(1))
-                .moveByOffset(0, -30)
-                .pause(Duration.ofSeconds(1))
-                .release().perform();
+            new Actions(driver)
+                    .moveToElement(serviceAwardProgram)
+                    .pause(Duration.ofSeconds(1))
+                    .clickAndHold(serviceAwardProgram)
+                    .pause(Duration.ofSeconds(1))
+                    .moveByOffset(0, -30)
+                    .pause(Duration.ofSeconds(1))
+                    .release().perform();
+        } else {
+            System.out.println("Please, check what test client you're using.");
+        }
 
         return new ConfigAppPage(driver);
 

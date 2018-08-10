@@ -21,12 +21,11 @@ public class ActionsTest {
         driver.manage().window().maximize();
     }
 
-    @Test
+    @Test(description = "Swaps Award items")
     public void test() {
         LoginPage loginPage = new LoginPage(driver)
-                .open()
-                .sendCredentials("bhkb.jshcw@gqfozpkzgb.kbk", "password1")
-                .iafLogin();
+                .open("https://staging-sandbox0.corp.globoforce.com/iaf-config-app/manageAwardProgramsOpen?client=5021&menuid=6_1")
+                .sendCredentials("bhkb.jshcw@gqfozpkzgb.kbk", "password1");
         IAFHomePage iafHomePage = new IAFHomePage(driver)
                 .selectConfigApp();
         ConfigAppPage configAppPage = new ConfigAppPage(driver)

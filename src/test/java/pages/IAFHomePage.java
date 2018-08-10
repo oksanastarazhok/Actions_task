@@ -16,8 +16,8 @@ public class IAFHomePage extends BasePage {
         super(driver);
     }
 
-
-    public IAFHomePage selectConfigApp(){
+    //Method selects Configapp from a drop-down list
+    public IAFHomePage selectConfigApp() {
         otherAppLink.click();
         config.click();
         return new IAFHomePage(driver);
